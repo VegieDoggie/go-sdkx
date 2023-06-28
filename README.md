@@ -32,6 +32,16 @@ val, b := new(big.Int).SetString(numLike, 10)
 panicIf.Flase(b)
 panicIf.Falsef("参数异常: %v %v", numLike, b)
 
+// err!=nil 时打印信息
+logIf.Err(err)
+logIf.Errf("有个错误: %v", err)
+logIf.Err(gcron.AddSingleton(ctx, pattern, f))
+
+// val==false 时打印信息
+numLike := "1"
+val, b := new(big.Int).SetString(numLike, 10)
+logIf.Flase(b)
+logIf.Falsef("参数异常: %v %v", numLike, b)
 ...
 ...
 ```
