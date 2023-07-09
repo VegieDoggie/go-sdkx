@@ -79,7 +79,7 @@ loop:
 // Nil logs if the last argument is nil
 func Nil(format string, arguments ...any) {
 	if arguments[len(arguments)-1] == nil {
-		std.Println(fmt.Sprintf(format, arguments[:len(arguments)-1]...))
+		std.Println(fmt.Sprintf(format, arguments...))
 	}
 }
 
@@ -93,7 +93,7 @@ func NotNil(format string, arguments ...any) {
 // Empty panics if the last argument is a nil interface, pointer, or empty map, array, slice, chan, string
 func Empty(format string, arguments ...any) {
 	if sdkx.IsEmpty(arguments[len(arguments)-1]) {
-		std.Println(fmt.Sprintf(format, arguments[:len(arguments)-1]...))
+		std.Println(fmt.Sprintf(format, arguments...))
 	}
 }
 
