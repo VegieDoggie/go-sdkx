@@ -2,7 +2,7 @@ package logIf
 
 import (
 	"fmt"
-	"github.com/VegetableDoggies/go-sdkx/valx"
+	"github.com/VegetableDoggies/go-sdkx/sdkx"
 	"log"
 	"os"
 	"strings"
@@ -76,16 +76,30 @@ loop:
 	}
 }
 
-// Nil logs if the first argument is a nil interface, pointer, map, array, slice, chan or func
-func Nil(val any, format string, arguments ...any) {
-	if valx.IsNil(val) {
+// Nil logs if the last argument is nil
+func Nil(format string, arguments ...any) {
+	if arguments[len(arguments)-1] == nil {
+		std.Println(fmt.Sprintf(format, arguments[:len(arguments)-1]...))
+	}
+}
+
+// NotNil logs if the last argument isn't nil
+func NotNil(format string, arguments ...any) {
+	if arguments[len(arguments)-1] != nil {
 		std.Println(fmt.Sprintf(format, arguments...))
 	}
 }
 
-// NotNil logs if the first argument isn't a nil interface, pointer, map, array, slice, chan or func
-func NotNil(val any, format string, arguments ...any) {
-	if !valx.IsNil(val) {
+// Empty panics if the last argument is a nil interface, pointer, or empty map, array, slice, chan, string
+func Empty(format string, arguments ...any) {
+	if sdkx.IsEmpty(arguments[len(arguments)-1]) {
+		std.Println(fmt.Sprintf(format, arguments[:len(arguments)-1]...))
+	}
+}
+
+// NotEmpty panics if the last argument isn't a nil interface, pointer, or empty map, array, slice, chan, string
+func NotEmpty(format string, arguments ...any) {
+	if !sdkx.IsEmpty(arguments[len(arguments)-1]) {
 		std.Println(fmt.Sprintf(format, arguments...))
 	}
 }
