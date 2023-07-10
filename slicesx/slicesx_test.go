@@ -1,6 +1,7 @@
 package slicesx
 
 import (
+	"fmt"
 	"testing"
 )
 
@@ -84,4 +85,15 @@ func Equal[E comparable](s1, s2 []E) bool {
 		}
 	}
 	return true
+}
+
+func TestRemoveByIndex(t *testing.T) {
+	x := []int{0, 1, 2}
+	fmt.Println(x)
+	fmt.Println(Delete(x, -3))
+	fmt.Println(Delete(x, -2))
+	fmt.Println(Delete(x, -1))
+	fmt.Println(Delete(x, 0))
+	fmt.Println(Delete(x, 1))
+	fmt.Println(Delete(x, 2))
 }
