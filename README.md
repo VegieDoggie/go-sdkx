@@ -13,7 +13,7 @@
 ## 快速开始
 
 ```cmd
-go get github.com/VegetableDoggies/go-sdkx@v1.0.3
+go get github.com/VegieDoggie/go-sdkx@v1.0.5
 ```
 
 ```go
