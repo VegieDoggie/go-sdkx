@@ -56,11 +56,11 @@ func TestFalsef(t *testing.T) {
 func TestNil(t *testing.T) {
 	defer assertPanic("TestNil")
 	var m map[string]any
-	Nil(m, "f: TestNil")
+	Nil("f: TestNil", m)
 }
 
 func TestNotNil(t *testing.T) {
 	defer assertPanic("TestNotNil")
 	m := make(map[string]any)
-	NotNil(m, "f: TestNotNil")
+	NotNil("f: TestNotNil", m)
 }

@@ -2,7 +2,7 @@ package logIf
 
 import (
 	"fmt"
-	"github.com/VegetableDoggies/go-sdkx/sdkx"
+	"github.com/VegieDoggie/go-sdkx/sdkx"
 	"log"
 	"os"
 	"strings"

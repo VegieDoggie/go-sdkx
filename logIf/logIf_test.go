@@ -37,10 +37,10 @@ func TestFalsef(t *testing.T) {
 
 func TestNil(t *testing.T) {
 	var m map[string]any
-	Nil(m, "f: TestNil")
+	Nil("f: TestNil", m)
 }
 
 func TestNotNil(t *testing.T) {
 	m := make(map[string]any)
-	NotNil(m, "f: TestNotNil")
+	NotNil("f: TestNotNil", m)
 }

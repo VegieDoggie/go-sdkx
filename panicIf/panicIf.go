@@ -2,7 +2,7 @@ package panicIf
 
 import (
 	"fmt"
-	"github.com/VegetableDoggies/go-sdkx/sdkx"
+	"github.com/VegieDoggie/go-sdkx/sdkx"
 	"strings"
 )
 
