@@ -6,7 +6,7 @@ import (
 )
 
 func TestErr(t *testing.T) {
-	Err(1, 2, 3, errors.New("test"))
+	Err(errors.New("test"))
 }
 
 func TestTrue(t *testing.T) {

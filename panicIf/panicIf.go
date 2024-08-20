@@ -6,14 +6,32 @@ import (
 	"reflect"
 )
 
-// Err panic if the last argument is a non-nil error
-func Err(arguments ...any) {
-	if a := arguments[len(arguments)-1]; a != nil {
-		switch a.(type) {
+// Err log if the last argument is a non-nil error
+func Err(argument any, info ...string) {
+	if argument != nil {
+		switch argument.(type) {
 		case error:
-			panic(fmt.Errorf("panic Err: %v", a))
+			panic(fmt.Errorf("panic Err: %+v\n%v", info, argument))
 		}
 	}
+}
+
+// ErrReturn panic if the last argument is a non-nil error
+func ErrReturn(arguments ...any) {
+	if len(arguments) > 0 {
+		if a := arguments[len(arguments)-1]; a != nil {
+			switch a.(type) {
+			case error:
+				panic(fmt.Errorf("panic ErrReturn: %v", a))
+			}
+		}
+	}
+}
+
+// ErrNil panic if err error or v is nil
+func ErrNil(err any, v any, info ...string) {
+	Err(err, info...)
+	Nil(v, info...)
 }
 
 // True panic if the argument is true

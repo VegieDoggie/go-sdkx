@@ -19,7 +19,7 @@ func assertPanic(s string) {
 
 func TestErr(t *testing.T) {
 	defer assertPanic("test")
-	Err(1, 2, 3, errors.New("test"))
+	Err(errors.New("test"))
 }
 
 func TestTrue(t *testing.T) {
