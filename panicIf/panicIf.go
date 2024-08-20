@@ -29,9 +29,9 @@ func ErrReturn(arguments ...any) {
 }
 
 // ErrNil panic if err error or v is nil
-func ErrNil(err any, v any, info ...string) {
+func ErrNil(err any, vNil any, info ...string) {
 	Err(err, info...)
-	Nil(v, info...)
+	Nil(vNil, info...)
 }
 
 // True panic if the argument is true
