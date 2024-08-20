@@ -2,90 +2,43 @@ package panicIf
 
 import (
 	"fmt"
-	"github.com/VegieDoggie/go-sdkx/sdkx"
-	"strings"
+	"github.com/VegieDoggie/go-sdkx/check"
 )
 
-// Err panics if the last argument is a non-nil error
+// Err panic if the last argument is a non-nil error
 func Err(arguments ...any) {
 	if a := arguments[len(arguments)-1]; a != nil {
 		switch a.(type) {
 		case error:
-			panic(a)
+			panic(fmt.Errorf("panic Err: %v", a))
 		}
 	}
 }
 
-// Errf panics with format if the last argument is a non-nil error
-func Errf(format string, arguments ...any) {
-	if a := arguments[len(arguments)-1]; a != nil {
-		switch a.(type) {
-		case error:
-			panic(fmt.Errorf(format, arguments...))
-		}
+// True panic if the argument is true
+func True(argument bool, info ...string) {
+	if argument {
+		panic(fmt.Errorf("panic True: %+v", info))
 	}
 }
 
-// True panics if the arguments include a true bool
-func True(arguments ...any) {
-	checkBool(true, "", arguments)
-}
-
-// Truef panics with format if the arguments include a true bool
-func Truef(format string, arguments ...any) {
-	checkBool(true, format, arguments)
-}
-
-// False panics if the arguments include a false bool
-func False(arguments ...any) {
-	checkBool(false, "", arguments)
-}
-
-// Falsef panics with format if the arguments include a true bool
-func Falsef(format string, arguments ...any) {
-	checkBool(false, format, arguments)
-}
-
-func checkBool(b bool, format string, arguments []any) {
-loop:
-	for i := len(arguments) - 1; i >= 0; i-- {
-		switch v := arguments[i].(type) {
-		case bool:
-			if v == b {
-				if len(format) == 0 {
-					format = strings.Repeat("%v ", len(arguments))
-				}
-				panic(fmt.Errorf(format, arguments...))
-			}
-			break loop
-		}
+// False panic if the argument is false
+func False(argument bool, info ...string) {
+	if !argument {
+		panic(fmt.Errorf("panic False: %+v", info))
 	}
 }
 
-// Nil logs if the last argument is nil
-func Nil(format string, arguments ...any) {
-	if arguments[len(arguments)-1] == nil {
-		panic(fmt.Errorf(format, arguments...))
+// Nil panic if the argument is nil
+func Nil(argument any, info ...string) {
+	if argument == nil {
+		panic(fmt.Errorf("panic Nil: %+v", info))
 	}
 }
 
-// NotNil logs if the last argument isn't nil
-func NotNil(format string, arguments ...any) {
-	if arguments[len(arguments)-1] != nil {
-		panic(fmt.Errorf(format, arguments...))
-	}
-}
-
-// Empty panics if the last argument is a nil interface, pointer, or empty map, array, slice, chan, string
-func Empty(format string, arguments ...any) {
-	if sdkx.IsEmpty(arguments[len(arguments)-1]) {
-		panic(fmt.Errorf(format, arguments...))
-	}
-}
-
-// NotEmpty panics if the last argument isn't a nil interface, pointer, or empty map, array, slice, chan, string
-func NotEmpty(format string, arguments ...any) {
-	if !sdkx.IsEmpty(arguments[len(arguments)-1]) {
-		panic(fmt.Errorf(format, arguments...))
+// Empty panic if the argument is nil or empty
+func Empty(argument any, info ...string) {
+	if check.IsEmpty(argument) {
+		panic(fmt.Errorf("panic Empty: %+v", info))
 	}
 }

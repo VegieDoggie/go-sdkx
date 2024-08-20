@@ -18,49 +18,26 @@ func assertPanic(s string) {
 }
 
 func TestErr(t *testing.T) {
-	defer assertPanic("TestErr")
-	err := errors.New("TestErr")
-	Err(err, nil)
-}
-
-func TestErrf(t *testing.T) {
-	defer assertPanic("TestErrf")
-	err := errors.New("TestErrf")
-	Errf("f: %v %v", err, nil)
+	defer assertPanic("test")
+	Err(1, 2, 3, errors.New("test"))
 }
 
 func TestTrue(t *testing.T) {
-	defer assertPanic("true")
-	err := errors.New("TestTrue")
-	True(true, err, nil)
-}
-
-func TestTruef(t *testing.T) {
-	defer assertPanic("true")
-	err := errors.New("TestTruef")
-	Truef("f: %v %v %v", true, err, nil)
+	defer assertPanic("test")
+	True(true, "test")
 }
 
 func TestFalse(t *testing.T) {
-	defer assertPanic("false")
-	err := errors.New("TestFalse")
-	False(false, err, nil)
-}
-
-func TestFalsef(t *testing.T) {
-	defer assertPanic("false")
-	err := errors.New("TestFalsef")
-	Falsef("f: %v %v %v", false, err, nil)
+	defer assertPanic("test")
+	False(false, "test")
 }
 
 func TestNil(t *testing.T) {
-	defer assertPanic("TestNil")
-	var m map[string]any
-	Nil("f: TestNil", m)
+	defer assertPanic("test")
+	Nil(false, "test")
 }
 
-func TestNotNil(t *testing.T) {
-	defer assertPanic("TestNotNil")
-	m := make(map[string]any)
-	NotNil("f: TestNotNil", m)
+func TestEmpty(t *testing.T) {
+	defer assertPanic("test")
+	Empty(make(map[string]any), "test")
 }

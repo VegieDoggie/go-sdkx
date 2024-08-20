@@ -1,4 +1,4 @@
-package sdkx
+package check
 
 import "reflect"
 
@@ -14,6 +14,7 @@ func IsEmpty(v any) bool {
 		return IsEmpty(rv.Elem().Interface())
 	case reflect.Array, reflect.Chan, reflect.Map, reflect.Slice, reflect.String:
 		return rv.Len() == 0
+	default:
+		return false
 	}
-	return false
 }

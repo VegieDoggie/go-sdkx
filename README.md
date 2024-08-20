@@ -17,16 +17,16 @@ go get github.com/VegieDoggie/go-sdkx@v1.0.5
 ```
 
 ```go
-// err!=nil 时抛出异常
 panicIf.Err(err)
-panicIf.Errf("有个错误: %v", err)
-panicIf.Err(gcron.AddSingleton(ctx, pattern, f))
+panicIf.True(x == "x")
+panicIf.False(false)
+panicIf.Nil(nil)
+panicIf.Empty(make(map[string]any))
 
-// val==false 时抛出异常
-numLike := "1"
-val, b := new(big.Int).SetString(numLike, 10)
-panicIf.Flase(b)
-panicIf.Falsef("参数异常: %v %v", numLike, b)
-...
-...
+logIf.Err(err)
+logIf.True(x == "x")
+logIf.False(false)
+logIf.Nil(nil)
+logIf.Empty(make(map[string]any))
+
 ```
