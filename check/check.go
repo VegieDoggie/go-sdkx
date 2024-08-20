@@ -8,6 +8,9 @@ func IsEmpty(v any) bool {
 		return true
 	}
 	rv := reflect.ValueOf(v)
+	if rv.IsNil() {
+		return true
+	}
 	kind := rv.Kind()
 	switch kind {
 	case reflect.Pointer, reflect.UnsafePointer:

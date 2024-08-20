@@ -3,6 +3,7 @@ package panicIf
 import (
 	"fmt"
 	"github.com/VegieDoggie/go-sdkx/check"
+	"reflect"
 )
 
 // Err panic if the last argument is a non-nil error
@@ -31,7 +32,7 @@ func False(argument bool, info ...string) {
 
 // Nil panic if the argument is nil
 func Nil(argument any, info ...string) {
-	if argument == nil {
+	if argument == nil || reflect.ValueOf(argument).IsNil() {
 		panic(fmt.Errorf("panic Nil: %+v", info))
 	}
 }

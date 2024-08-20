@@ -4,6 +4,7 @@ import (
 	"github.com/VegieDoggie/go-sdkx/check"
 	"log"
 	"os"
+	"reflect"
 )
 
 var std = log.New(os.Stderr, "<logIf> ", log.Ldate|log.Ltime)
@@ -38,7 +39,7 @@ func False(argument bool, info ...string) {
 
 // Nil log if the argument is nil
 func Nil(argument any, info ...string) {
-	if argument == nil {
+	if argument == nil || reflect.ValueOf(argument).IsNil() {
 		std.Printf("log Nil: %+v", info)
 	}
 }
