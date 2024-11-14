@@ -24,5 +24,5 @@ panicIf.Nil(nil)
 panicIf.Empty(make(map[string]any))
 
 // in case if you want to panic a custom error
-panicIf.Err(err, errors.New("custom error")) // panic without wrapping the error
+panicIf.Err(err, errors.New("custom error")) // panic only errors.New("custom error")
 ```
